@@ -15,8 +15,8 @@ namespace XFWeather
             Bootstrapper.Initialize();
 
             var tabs = new TabbedPage { Title = "XFWeather", BindingContext = ServiceLocator.Current.GetInstance<WeatherViewModel>(), Children = { new WeatherPage(), new ForecastPage() } };
-		    MainPage = new NavigationPage(tabs) { BarBackgroundColor = Color.FromHex("3498db"), BarTextColor = Color.White };
-        }
+		    MainPage = tabs;
+		}
 
 		protected override void OnStart ()
 		{
