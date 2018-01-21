@@ -146,4 +146,22 @@
       <Name>XFWeather</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab1%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab2%403x.png" />
+  </ItemGroup>
 </Project>
