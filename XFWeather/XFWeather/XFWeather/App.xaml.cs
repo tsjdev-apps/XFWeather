@@ -1,5 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using CommonServiceLocator;
+using Xamarin.Forms;
 using XFWeather.Init;
+using XFWeather.ViewModels;
+using XFWeather.Views;
 
 namespace XFWeather
 {
@@ -10,9 +13,10 @@ namespace XFWeather
 			InitializeComponent();
 
             Bootstrapper.Initialize();
-            
-			MainPage = new XFWeather.MainPage();
-		}
+
+            var tabs = new TabbedPage { Title = "XFWeather", BindingContext = ServiceLocator.Current.GetInstance<WeatherViewModel>(), Children = { new WeatherPage(), new ForecastPage() } };
+		    MainPage = new NavigationPage(tabs) { BarBackgroundColor = Color.FromHex("3498db"), BarTextColor = Color.White };
+        }
 
 		protected override void OnStart ()
 		{
