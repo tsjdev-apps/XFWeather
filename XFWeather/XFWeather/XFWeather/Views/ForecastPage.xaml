@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:XFWeather.Converters;assembly=XFWeather"
              x:Class="XFWeather.Views.ForecastPage"
              Title="Forecast">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToFormattedDateTimeStringConverter x:Key="DateTimeToFormattedDateTimeStringConverter"/>
+            <converters:TemperatureToFormattedTemperatureConverter x:Key="TemperatureToFormattedTemperatureConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Forecast.Items}"
@@ -18,10 +26,10 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
                             <Image HeightRequest="44" WidthRequest="44" 
-                                   Source="{Binding DisplayIcon}"/>
+                                   Source="{Binding Icon}"/>
                             <StackLayout Padding="10" Spacing="5">
-                                <Label Text="{Binding DisplayTemp}" TextColor="#3498db"/>
-                                <Label Text="{Binding DisplayDate}" />
+                                <Label Text="{Binding MainWeather.Temperature, Converter={StaticResource TemperatureToFormattedTemperatureConverter}}" TextColor="#3498db"/>
+                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToFormattedDateTimeStringConverter}}" />
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
