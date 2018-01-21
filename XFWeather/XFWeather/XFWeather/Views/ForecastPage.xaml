@@ -11,16 +11,17 @@
         </OnPlatform>
     </ContentPage.Padding>
 
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:DateTimeToFormattedDateTimeStringConverter x:Key="DateTimeToFormattedDateTimeStringConverter"/>
             <converters:TemperatureToFormattedTemperatureConverter x:Key="TemperatureToFormattedTemperatureConverter"/>
+            <converters:NullToIsVisibleConverter x:Key="NullToIsVisibleConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Forecast.Items}"
+        <Grid>
+            <ListView ItemsSource="{Binding Forecast.Items}"
                   HasUnevenRows="True"
                   CachingStrategy="RecycleElement"
                   IsPullToRefreshEnabled="True"
@@ -28,21 +29,30 @@
                   IsRefreshing="{Binding IsLoading, Mode=OneWay}"
                   RowHeight="66"
                   SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
-                            <Image HeightRequest="44" WidthRequest="44" 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
+                                <Image HeightRequest="44" WidthRequest="44" 
                                    Source="{Binding Icon}"/>
-                            <StackLayout Padding="10" Spacing="5">
-                                <Label Text="{Binding MainWeather.Temperature, Converter={StaticResource TemperatureToFormattedTemperatureConverter}}" TextColor="#3498db"/>
-                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToFormattedDateTimeStringConverter}}" />
+                                <StackLayout Padding="10" Spacing="5">
+                                    <Label Text="{Binding MainWeather.Temperature, Converter={StaticResource TemperatureToFormattedTemperatureConverter}}" TextColor="#3498db"/>
+                                    <Label Text="{Binding Date, Converter={StaticResource DateTimeToFormattedDateTimeStringConverter}}" />
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="Currently no forecast is available. First try to get the weather information."
+                   IsVisible="{Binding Forecast, Converter={StaticResource NullToIsVisibleConverter}}">
+                <Label.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android,iOS" Value="12"/>
+                    </OnPlatform>
+                </Label.Margin>
+            </Label>
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>
