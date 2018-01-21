@@ -102,7 +102,7 @@ namespace XFWeather.ViewModels
                         Forecast = openWeatherMapServiceForecastResponse.Response;
 
                     var unitString = IsMetric ? "C" : "F";
-                    Temperature = $"Temp: {weatherRoot.MainWeather?.Temperature ?? 0}°{unitString}";
+                    Temperature = $"Temperature: {weatherRoot.MainWeather?.Temperature ?? 0}°{unitString}";
                     Condition = $"{weatherRoot.Name}: {weatherRoot.Weather?[0]?.Description ?? string.Empty}";
 
                     await CrossTextToSpeech.Current.Speak(Temperature + " " + Condition);
@@ -116,7 +116,7 @@ namespace XFWeather.ViewModels
             }
             catch (Exception ex)
             {
-                Temperature = "Unable to get Weather";
+                Temperature = "Unable to get weather!";
                 Condition = ex.Message;
                 Forecast = null;
             }
