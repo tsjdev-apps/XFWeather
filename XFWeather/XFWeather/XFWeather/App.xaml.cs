@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using XFWeather.Init;
 
 namespace XFWeather
 {
@@ -13,6 +9,8 @@ namespace XFWeather
 		{
 			InitializeComponent();
 
+            Bootstrapper.Initialize();
+            
 			MainPage = new XFWeather.MainPage();
 		}
 
