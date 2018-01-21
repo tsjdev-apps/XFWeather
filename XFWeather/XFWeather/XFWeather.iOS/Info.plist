@@ -28,6 +28,8 @@
 	<string>com.yourcompany.XFWeather</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Location for closest weather.</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-60@2x</string>
