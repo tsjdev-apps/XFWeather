@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFWeather.Views.WeatherPage"
+             Title="Weather">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,32,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" 
+                     Spacing="10">
+            <Entry Text="{Binding Location}">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                                 Binding="{Binding UseGps}"
+                                 Value="true">
+                        <Setter Property="IsEnabled" 
+                                Value="false" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="10">
+                <Label Text="Use GPS" 
+                       VerticalTextAlignment="Center" 
+                       HorizontalOptions="EndAndExpand"/>
+                <Switch IsToggled="{Binding UseGps}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="10">
+                <Label Text="Use Metric" 
+                       VerticalTextAlignment="Center" 
+                       HorizontalOptions="EndAndExpand"/>
+                <Switch IsToggled="{Binding IsMetric}"/>
+            </StackLayout>
+
+            <Button Text="Get Weather" 
+                    Command="{Binding GetWeatherCommand}"/>
+            
+            <Label Text="{Binding Temperature}" 
+                   FontSize="24"/>
+            
+            <Label Text="{Binding Condition}"/>
+            
+            <ActivityIndicator IsVisible="{Binding IsLoading}" 
+                               IsRunning="{Binding IsLoading}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
